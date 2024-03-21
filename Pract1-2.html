@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head> 
+<body> 
+    <div id="message"></div> 
+ 
+    <form id="loginForm">
+        <label for="login">Логин</label> 
+        <input type="text" id="login" name="login"> 
+ 
+        <label for="password">Пароль</label> 
+        <input type="password" id="password" name="password"> 
+ 
+        <button type="submit">Войти</button> 
+    </form>
+    
+    <script> 
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginInput = document.getElementById('login');
+            const passwordInput = document.getElementById('password');
+            
+            // Подстановка учетных данных из localStorage
+            if (localStorage.getItem('savedLogin')) {
+                loginInput.value = localStorage.getItem('savedLogin');
+            }
+            
+            // Очистка данных формы
+            function clearForm() {
+                loginInput.value = '';
+                passwordInput.value = '';
+            }
+            
+            // Слушатель для отправки формы
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Предотвращаем отправку формы
+                
+                let login = loginInput.value;
+                let password = passwordInput.value;
+                
+                if (login === 'admin' && password === 'admin') { 
+                    document.getElementById('message').innerText = 'Успешный вход!'; 
+                    // Сохранение учетных данных в localStorage
+                    localStorage.setItem('savedLogin', login);
+                } else { 
+                    document.getElementById('message').innerText = 'Неправильный логин или пароль'; 
+                }
+                
+                clearForm(); // Очистка данных формы после отправки
+            });
+        });
+    </script> 
+</body> 
+</html>
