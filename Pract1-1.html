@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Счётчик: <span id="counter"></span></h1>
+    <button onclick="myFunction()">+1</button>
+    <button onclick="myFunctions()">-1</button>
+    <script>
+        let count = 0;
+        document.addEventListener("DOMContentLoaded", () => 
+        {
+            alert("Hello World!");
+        });
+
+        function myFunction() {
+            count++;
+            document.getElementById('counter').textContent = count;
+            localStorage.setItem('counter', count);
+        }
+
+        function myFunctions() {
+            count--;
+            document.getElementById('counter').textContent = count;
+            localStorage.setItem('counter', count);
+        }
+    </script>
+</body>
+</html>
